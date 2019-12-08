@@ -1,0 +1,24 @@
+
+
+logging:
+  level:
+    root: WARN
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+
+
+security:
+  oauth2:
+    client:
+      petapiintegration:
+        client-id: XXXX
+        clientSecret: XXXX
+        grant-type: client_credentials
+        access-token-uri: https://api.petfinder.com/v2/oauth2/token
+
+
+
+messages:
+  base-uri: https://api.petfinder.com/v2/animals?location=Andover, MA&distance=2
+
