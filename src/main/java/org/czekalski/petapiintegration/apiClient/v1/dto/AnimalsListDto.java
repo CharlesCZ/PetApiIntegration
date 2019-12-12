@@ -2,15 +2,13 @@ package org.czekalski.petapiintegration.apiClient.v1.dto;
 
 
 import com.fasterxml.jackson.annotation.*;
-import lombok.Data;
+
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
 public class AnimalsListDto {
     private final   List<AnimalDto> animals;
 
