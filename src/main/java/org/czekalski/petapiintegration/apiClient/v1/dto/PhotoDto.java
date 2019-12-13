@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class PhotoDto {
-
     private final String small;
 
     private final String medium;
@@ -19,23 +18,12 @@ public class PhotoDto {
 
     private final String full;
 
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
     @JsonCreator
-    public PhotoDto(   @JsonProperty("small")String small,
-                       @JsonProperty("medium") String medium,
-                       @JsonProperty("large") String large,
-                       @JsonProperty("full") String full) {
+    public PhotoDto(
+            @JsonProperty("small") String small,
+            @JsonProperty("medium") String medium,
+            @JsonProperty("large") String large,
+            @JsonProperty("full") String full) {
         this.small = small;
         this.medium = medium;
         this.large = large;

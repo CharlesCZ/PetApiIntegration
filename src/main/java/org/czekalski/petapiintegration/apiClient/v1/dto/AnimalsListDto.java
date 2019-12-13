@@ -14,23 +14,10 @@ public class AnimalsListDto {
 
     private final  PaginationDto pagination;
 
-
-
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
     @JsonCreator
-    public AnimalsListDto(  @JsonProperty("animals")List<AnimalDto> animals,
-                            @JsonProperty("pagination")PaginationDto pagination) {
+    public AnimalsListDto(
+            @JsonProperty("animals") List<AnimalDto> animals,
+            @JsonProperty("pagination") PaginationDto pagination) {
         this.animals = animals;
         this.pagination = pagination;
     }

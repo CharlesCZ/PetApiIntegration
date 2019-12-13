@@ -9,31 +9,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EnvironmentDto {
-
-
-
     private final Boolean children;
 
     private final Boolean dogs;
 
     private final Boolean cats;
 
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-@JsonCreator
-    public EnvironmentDto( @JsonProperty("children")Boolean children,
-                           @JsonProperty("dogs")Boolean dogs,
-                           @JsonProperty("cats") Boolean cats) {
+    @JsonCreator
+    public EnvironmentDto(
+            @JsonProperty("children") Boolean children,
+            @JsonProperty("dogs") Boolean dogs,
+            @JsonProperty("cats") Boolean cats) {
         this.children = children;
         this.dogs = dogs;
         this.cats = cats;

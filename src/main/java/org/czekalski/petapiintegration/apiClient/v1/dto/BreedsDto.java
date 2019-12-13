@@ -8,35 +8,20 @@ import com.fasterxml.jackson.annotation.*;
 
 
 public class BreedsDto {
-
-
-
     private final String primary;
 
-    private final Object secondary;
+    private final String secondary;
 
-    private final Boolean mixed;
+    private final boolean mixed;
 
-    private final Boolean unknown;
-
-
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+    private final boolean unknown;
 
     @JsonCreator
-    public BreedsDto( @JsonProperty("primary")String primary,
-                      @JsonProperty("secondary")Object secondary,
-                      @JsonProperty("mixed") Boolean mixed,
-                      @JsonProperty("unknown")Boolean unknown) {
+    public BreedsDto(
+            @JsonProperty("primary") String primary,
+            @JsonProperty("secondary") String secondary,
+            @JsonProperty("mixed") boolean mixed,
+            @JsonProperty("unknown") boolean unknown) {
         this.primary = primary;
         this.secondary = secondary;
         this.mixed = mixed;
@@ -52,11 +37,11 @@ public class BreedsDto {
         return secondary;
     }
 
-    public Boolean getMixed() {
+    public boolean getMixed() {
         return mixed;
     }
 
-    public Boolean getUnknown() {
+    public boolean getUnknown() {
         return unknown;
     }
 }

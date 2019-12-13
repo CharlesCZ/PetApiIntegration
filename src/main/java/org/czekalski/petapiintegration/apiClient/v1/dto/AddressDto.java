@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.*;
 
 
 public class AddressDto {
-
-
-
-    private String address1;
+    private final String address1;
 
     private final String address2;
 
@@ -23,25 +20,14 @@ public class AddressDto {
 
     private final String country;
 
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
     @JsonCreator
-    public AddressDto(  @JsonProperty("address1")String address1,
-                        @JsonProperty("address2")String address2,
-                        @JsonProperty("city") String city,
-                        @JsonProperty("state") String state,
-                        @JsonProperty("postcode")String postcode,
-                        @JsonProperty("country")String country) {
+    public AddressDto(
+            @JsonProperty("address1") String address1,
+            @JsonProperty("address2") String address2,
+            @JsonProperty("city") String city,
+            @JsonProperty("state") String state,
+            @JsonProperty("postcode") String postcode,
+            @JsonProperty("country") String country) {
         this.address1 = address1;
         this.address2 = address2;
         this.city = city;

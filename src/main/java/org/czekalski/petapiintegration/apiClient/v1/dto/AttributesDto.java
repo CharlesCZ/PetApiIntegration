@@ -8,37 +8,23 @@ import com.fasterxml.jackson.annotation.*;
 
 
 public class AttributesDto {
+    private final boolean spayedNeutered;
 
-
-    private final Boolean spayedNeutered;
-
-    private final Boolean houseTrained;
+    private final boolean houseTrained;
 
     private final Boolean declawed;
 
-    private final Boolean specialNeeds;
+    private final boolean specialNeeds;
 
-    private final Boolean shotsCurrent;
-
-
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+    private final boolean shotsCurrent;
 
     @JsonCreator
-    public AttributesDto(@JsonProperty("spayed_neutered")Boolean spayedNeutered,
-                         @JsonProperty("house_trained")Boolean houseTrained,
-                         @JsonProperty("declawed")Boolean declawed,
-                         @JsonProperty("special_needs")Boolean specialNeeds,
-                         @JsonProperty("shots_current")Boolean shotsCurrent) {
+    public AttributesDto(
+            @JsonProperty("spayed_neutered") boolean spayedNeutered,
+            @JsonProperty("house_trained") boolean houseTrained,
+            @JsonProperty("declawed") Boolean declawed,
+            @JsonProperty("special_needs") boolean specialNeeds,
+            @JsonProperty("shots_current") boolean shotsCurrent) {
         this.spayedNeutered = spayedNeutered;
         this.houseTrained = houseTrained;
         this.declawed = declawed;
@@ -47,11 +33,11 @@ public class AttributesDto {
     }
 
 
-    public Boolean getSpayedNeutered() {
+    public boolean getSpayedNeutered() {
         return spayedNeutered;
     }
 
-    public Boolean getHouseTrained() {
+    public boolean getHouseTrained() {
         return houseTrained;
     }
 
@@ -59,11 +45,11 @@ public class AttributesDto {
         return declawed;
     }
 
-    public Boolean getSpecialNeeds() {
+    public boolean getSpecialNeeds() {
         return specialNeeds;
     }
 
-    public Boolean getShotsCurrent() {
+    public boolean getShotsCurrent() {
         return shotsCurrent;
     }
 }

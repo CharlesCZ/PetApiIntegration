@@ -33,7 +33,7 @@ public class AuthorizationController {
     }
 
     @GetMapping(value = "/authorize", params = "grant_type=client_credentials")
-    public String client_credentials_grant(Model model) {
+    public String clientCredentialsGrant(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("AUTHENTICATION");
@@ -145,7 +145,7 @@ AnimalDto animalDto= toAnimalDto(json);
     }
 
     @GetMapping(value = "/authorize2", params = "grant_type=client_credentials")
-    public  AnimalsListDto client_credentials_grant2(Model model) {
+    public AnimalsListDto clientCredentialsGrant2(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("AUTHENTICATION");

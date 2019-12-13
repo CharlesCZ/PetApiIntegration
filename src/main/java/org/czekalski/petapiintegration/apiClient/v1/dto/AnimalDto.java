@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.*;
 
 
 public class AnimalDto {
-
-
-    private Integer id;
+    private final Integer id;
 
     private final String organizationId;
 
@@ -55,42 +53,30 @@ public class AnimalDto {
 
     private final ContactDto contact;
 
-
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
     @JsonCreator
-    public AnimalDto( @JsonProperty("id")Integer id,
-                      @JsonProperty("organization_id") String organizationId,
-                      @JsonProperty("url") String url,
-                      @JsonProperty("type") String type,
-                      @JsonProperty("species")String species,
-                      @JsonProperty("breeds") BreedsDto breeds,
-                      @JsonProperty("colors")ColorsDto colors,
-                      @JsonProperty("age")String age,
-                      @JsonProperty("gender") String gender,
-                      @JsonProperty("size")  String size,
-                      @JsonProperty("coat")String coat,
-                      @JsonProperty("attributes") AttributesDto attributes,
-                      @JsonProperty("environment") EnvironmentDto environment,
-                      @JsonProperty("tags")   List<String> tags,
-                      @JsonProperty("name")String name,
-                      @JsonProperty("description")String description,
-                      @JsonProperty("photos") List<PhotoDto> photos,
-                      @JsonProperty("status") String status,
-                      @JsonProperty("status_changed_at")String statusChangedAt,
-                      @JsonProperty("published_at")String publishedAt,
-                      @JsonProperty("distance")Double distance,
-                      @JsonProperty("contact")ContactDto contact) {
+    public AnimalDto(
+            @JsonProperty("id") Integer id,
+            @JsonProperty("organization_id") String organizationId,
+            @JsonProperty("url") String url,
+            @JsonProperty("type") String type,
+            @JsonProperty("species") String species,
+            @JsonProperty("breeds") BreedsDto breeds,
+            @JsonProperty("colors") ColorsDto colors,
+            @JsonProperty("age") String age,
+            @JsonProperty("gender") String gender,
+            @JsonProperty("size") String size,
+            @JsonProperty("coat") String coat,
+            @JsonProperty("attributes") AttributesDto attributes,
+            @JsonProperty("environment") EnvironmentDto environment,
+            @JsonProperty("tags") List<String> tags,
+            @JsonProperty("name") String name,
+            @JsonProperty("description") String description,
+            @JsonProperty("photos") List<PhotoDto> photos,
+            @JsonProperty("status") String status,
+            @JsonProperty("status_changed_at") String statusChangedAt,
+            @JsonProperty("published_at") String publishedAt,
+            @JsonProperty("distance") Double distance,
+            @JsonProperty("contact") ContactDto contact) {
         this.id = id;
         this.organizationId = organizationId;
         this.url = url;
