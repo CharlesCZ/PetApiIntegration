@@ -1,11 +1,8 @@
 package org.czekalski.petapiintegration.resourceServer.apiResource.v1.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
-
 
 public class AnimalResourcesListDto {
     private final List<AnimalResourceDto> content;

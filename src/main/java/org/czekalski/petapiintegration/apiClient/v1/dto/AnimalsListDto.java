@@ -1,11 +1,8 @@
 package org.czekalski.petapiintegration.apiClient.v1.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
-
 
 public class AnimalsListDto {
     private final List<AnimalDto> animals;

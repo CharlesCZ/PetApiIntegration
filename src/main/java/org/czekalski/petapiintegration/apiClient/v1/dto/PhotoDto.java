@@ -4,7 +4,6 @@ package org.czekalski.petapiintegration.apiClient.v1.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class PhotoDto {
     private final String small;
 
