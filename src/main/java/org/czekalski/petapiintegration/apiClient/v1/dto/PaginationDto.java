@@ -1,26 +1,23 @@
 
 package org.czekalski.petapiintegration.apiClient.v1.dto;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.*;
 
 public class PaginationDto {
-    private final Integer countPerPage;
+    private final int countPerPage;
 
-    private final Integer totalCount;
+    private final int totalCount;
 
-    private final Integer currentPage;
+    private final int currentPage;
 
-    private final Integer totalPages;
+    private final int totalPages;
 
     @JsonCreator
     public PaginationDto(
-            @JsonProperty("count_per_page") Integer countPerPage,
-            @JsonProperty("total_count") Integer totalCount,
-            @JsonProperty("current_page") Integer currentPage,
-            @JsonProperty("total_pages") Integer totalPages) {
+            @JsonProperty("count_per_page") int countPerPage,
+            @JsonProperty("total_count") int totalCount,
+            @JsonProperty("current_page") int currentPage,
+            @JsonProperty("total_pages") int totalPages) {
         this.countPerPage = countPerPage;
         this.totalCount = totalCount;
         this.currentPage = currentPage;
@@ -28,19 +25,19 @@ public class PaginationDto {
     }
 
 
-    public Integer getCountPerPage() {
+    public int getCountPerPage() {
         return countPerPage;
     }
 
-    public Integer getTotalCount() {
+    public int getTotalCount() {
         return totalCount;
     }
 
-    public Integer getCurrentPage() {
+    public int getCurrentPage() {
         return currentPage;
     }
 
-    public Integer getTotalPages() {
+    public int getTotalPages() {
         return totalPages;
     }
 }

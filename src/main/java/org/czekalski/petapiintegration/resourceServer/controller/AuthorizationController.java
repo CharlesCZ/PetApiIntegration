@@ -1,4 +1,4 @@
-package org.czekalski.petapiintegration.controllers;
+package org.czekalski.petapiintegration.resourceServer.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;

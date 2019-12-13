@@ -12,6 +12,7 @@ public class AttributesDto {
 
     private final boolean houseTrained;
 
+    //inside petfinder API can be null
     private final Boolean declawed;
 
     private final boolean specialNeeds;
