@@ -1,16 +1,14 @@
 package org.czekalski.petapiintegration.apiClient.v1.dto;
 
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class AnimalsListDto {
-    private final   List<AnimalDto> animals;
+    private final List<AnimalDto> animals;
 
     private final  PaginationDto pagination;
 
@@ -21,7 +19,6 @@ public class AnimalsListDto {
         this.animals = animals;
         this.pagination = pagination;
     }
-
 
     public List<AnimalDto> getAnimals() {
         return animals;

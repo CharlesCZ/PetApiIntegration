@@ -1,10 +1,8 @@
 
 package org.czekalski.petapiintegration.apiClient.v1.dto;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class AddressDto {

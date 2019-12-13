@@ -1,11 +1,10 @@
 
 package org.czekalski.petapiintegration.apiClient.v1.dto;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.fasterxml.jackson.annotation.*;
+import java.util.List;
 
 
 public class AnimalDto {
