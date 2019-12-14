@@ -43,7 +43,7 @@ class AnimalServiceTest {
     private static final int TOTAL_COUNT = 3000;
     private static final int CURRENT_PAGE = 1;
     private static final int TOTAL_PAGES = 300;
-    public static final int SIZE = 2;
+    private static final int SIZE = 2;
 
     private final Mapper<AnimalDto, Animal> animalDtoAnimal = new AnimalDtoToAnimal();
 
