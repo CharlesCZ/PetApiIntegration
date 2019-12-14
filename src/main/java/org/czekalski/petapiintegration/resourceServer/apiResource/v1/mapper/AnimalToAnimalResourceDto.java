@@ -1,5 +1,6 @@
 package org.czekalski.petapiintegration.resourceServer.apiResource.v1.mapper;
 
+import org.czekalski.petapiintegration.apiClient.v1.mapper.Mapper;
 import org.czekalski.petapiintegration.resourceServer.apiResource.v1.dto.AnimalResourceDto;
 import org.czekalski.petapiintegration.resourceServer.model.Animal;
 import org.springframework.stereotype.Component;

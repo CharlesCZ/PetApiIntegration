@@ -11,7 +11,7 @@ class PaginationDtoToPaginationTest {
     private static final int TOTAL_COUNT = 3000;
     private static final int CURRENT_PAGE = 1;
     private static final int TOTAL_PAGES = 300;
-    private Mapper<PaginationDto, Pagination> paginationDtoToPagination = new PaginationDtoToPagination();
+    private final Mapper<PaginationDto, Pagination> paginationDtoToPagination = new PaginationDtoToPagination();
 
     @Test
     void map() {

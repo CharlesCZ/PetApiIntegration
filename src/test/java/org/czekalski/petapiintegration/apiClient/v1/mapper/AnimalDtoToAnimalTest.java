@@ -14,7 +14,7 @@ class AnimalDtoToAnimalTest {
     private static final String GENDER = "Female";
     private static final int ID = 1;
     private static final String NAME = "Reksia";
-    private Mapper<AnimalDto, Animal> animalMapper = new AnimalDtoToAnimal();
+    private final Mapper<AnimalDto, Animal> animalMapper = new AnimalDtoToAnimal();
 
     @Test
     void map() {

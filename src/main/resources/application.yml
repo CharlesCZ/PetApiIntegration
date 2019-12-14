@@ -12,8 +12,8 @@ security:
   oauth2:
     client:
       petapiintegration:
-        client-id: XXXX
-        clientSecret: XXXX
+        client-id: 1IliKmJJLC04JXFeY7v0C1FLBsup6HLObhPwCclkkPB9ZtAQff
+        clientSecret: 8b0lDLqQoUI2ISMDBYRjGluLN9KFu8UQwl4XxJtH
         grant-type: client_credentials
         access-token-uri: https://api.petfinder.com/v2/oauth2/token
 
