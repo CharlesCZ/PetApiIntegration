@@ -16,8 +16,8 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-    @GetMapping("/dogs{cityId}")
-    public AnimalResourcesListDto getDogsFromCity(@PathVariable String cityId, @RequestParam int size) {
+    @GetMapping("/dogs/{cityId}/{stateId}")
+    public AnimalResourcesListDto getDogsFromCity(@PathVariable String cityId, @PathVariable String stateId, @RequestParam int size) {
 
         return null;
     }

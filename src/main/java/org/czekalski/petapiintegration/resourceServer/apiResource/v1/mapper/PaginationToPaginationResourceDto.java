@@ -6,7 +6,7 @@ import org.czekalski.petapiintegration.resourceServer.model.Pagination;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PaginationToPaginationResource implements Mapper<Pagination, PaginationResourceDto> {
+public class PaginationToPaginationResourceDto implements Mapper<Pagination, PaginationResourceDto> {
     @Override
     public PaginationResourceDto map(Pagination pagination) {
         if (pagination == null) {
