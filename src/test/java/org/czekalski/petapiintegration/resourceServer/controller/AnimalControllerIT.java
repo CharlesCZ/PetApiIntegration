@@ -65,7 +65,7 @@ class AnimalControllerIT {
 
         //when then
         mockMvc.perform(get("/dogs" + "/" + CITY_ID + "/" + STATE_ID)
-                .param("size", "2")
+                .param("size", "1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content", hasSize(1)))
