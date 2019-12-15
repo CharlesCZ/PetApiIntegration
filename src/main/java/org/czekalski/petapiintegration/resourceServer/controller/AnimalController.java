@@ -19,7 +19,7 @@ public class AnimalController {
     @GetMapping("/dogs/{cityId}/{stateId}")
     public AnimalResourcesListDto getDogsFromCity(@PathVariable String cityId, @PathVariable String stateId, @RequestParam int size) {
 
-        return null;
+        return animalService.findDogsByCityIdAndDogsQuantity(cityId, stateId, size);
     }
 
 }

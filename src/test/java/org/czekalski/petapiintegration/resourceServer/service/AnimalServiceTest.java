@@ -29,7 +29,7 @@ import static org.mockito.BDDMockito.then;
 
 
 class AnimalServiceTest {
-    private static final String CITY_ID = "Androver";
+    private static final String CITY_ID = "Andover";
     private static final String STATE_ID = "MA";
     private static final String PRIMARY = "Labrador Retriever";
     private static final String AGE = "Adult";
