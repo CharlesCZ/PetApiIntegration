@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -22,6 +23,7 @@ class PetApiIntegrationEndToEndTest {
     private static final int COUNT_PER_PAGE = 2;
     private static final String CITY_ID = "Andover";
     private static final String STATE_ID = "MA";
+    public static final int PAGE_NUMBER = 1;
 
     @Autowired
     private WebApplicationContext wac;
@@ -36,15 +38,15 @@ class PetApiIntegrationEndToEndTest {
     @WithMockUser(username = "doglover", password = "hardpassword1234", roles = "ADMIN")
     @Test
     void getDogsFromCity() throws Exception {
-
         //when then
-        mockMvc.perform(get("/dogs" + "/" + CITY_ID + "/" + STATE_ID)
+        mockMvc.perform(get("/dogs" + "/" + STATE_ID+"/"+ CITY_ID)
                 .param("size", "2")
+                .param("page", "1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", hasSize(2)))
-                .andExpect(jsonPath("$.pagination.count_per_page", is(COUNT_PER_PAGE)))
-                .andExpect(jsonPath("$.length()", is(2)))
+                .andExpect(jsonPath("$.pagination.content", hasSize(2)))
+                .andExpect(jsonPath("$.pagination.size", is(COUNT_PER_PAGE)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pagination.number", is(PAGE_NUMBER)))
                 .andDo(print());
     }
 
