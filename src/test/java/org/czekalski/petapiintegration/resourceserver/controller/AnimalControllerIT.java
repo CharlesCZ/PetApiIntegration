@@ -37,16 +37,13 @@ class AnimalControllerIT {
     private static final int TOTAL_PAGES = 300;
     private static final String CITY_ID = "Andover";
     private static final String STATE_ID = "MA";
+
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
     AnimalService animalService;
 
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @WithMockUser(username = "doglover", password = "hardpassword1234", roles = "ADMIN")
     @Test
