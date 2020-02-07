@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AnimalResourceDto {
-    private final Integer id;
+    private final int id;
 
     private final String name;
 
@@ -16,7 +16,7 @@ public class AnimalResourceDto {
 
     @JsonCreator
     public AnimalResourceDto(
-            @JsonProperty("id") Integer id,
+            @JsonProperty("id") int id,
             @JsonProperty("name") String name,
             @JsonProperty("breed") String breed,
             @JsonProperty("age") String age,
@@ -29,7 +29,7 @@ public class AnimalResourceDto {
 
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

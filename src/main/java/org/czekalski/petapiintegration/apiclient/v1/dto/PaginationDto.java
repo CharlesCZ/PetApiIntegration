@@ -2,6 +2,8 @@ package org.czekalski.petapiintegration.apiclient.v1.dto;
 
 import com.fasterxml.jackson.annotation.*;
 
+import java.util.Objects;
+
 public class PaginationDto {
     private final int countPerPage;
 
@@ -38,5 +40,21 @@ public class PaginationDto {
 
     public int getTotalPages() {
         return totalPages;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PaginationDto that = (PaginationDto) o;
+        return countPerPage == that.countPerPage &&
+                totalCount == that.totalCount &&
+                currentPage == that.currentPage &&
+                totalPages == that.totalPages;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(countPerPage, totalCount, currentPage, totalPages);
     }
 }

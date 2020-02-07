@@ -3,6 +3,8 @@ package org.czekalski.petapiintegration.apiclient.v1.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class AddressDto {
     private final String address1;
 
@@ -55,5 +57,23 @@ public class AddressDto {
 
     public String getCountry() {
         return country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressDto that = (AddressDto) o;
+        return Objects.equals(address1, that.address1) &&
+                Objects.equals(address2, that.address2) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(state, that.state) &&
+                Objects.equals(postcode, that.postcode) &&
+                Objects.equals(country, that.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address1, address2, city, state, postcode, country);
     }
 }

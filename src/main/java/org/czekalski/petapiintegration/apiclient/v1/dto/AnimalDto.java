@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AnimalDto {
-    private final Integer id;
+    private final int id;
 
     private final String organizationId;
 
@@ -53,7 +54,7 @@ public class AnimalDto {
 
     @JsonCreator
     public AnimalDto(
-            @JsonProperty("id") Integer id,
+            @JsonProperty("id") int id,
             @JsonProperty("organization_id") String organizationId,
             @JsonProperty("url") String url,
             @JsonProperty("type") String type,
@@ -100,7 +101,7 @@ public class AnimalDto {
     }
 
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -186,5 +187,39 @@ public class AnimalDto {
 
     public ContactDto getContact() {
         return contact;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnimalDto animalDto = (AnimalDto) o;
+        return id == animalDto.id &&
+                Objects.equals(organizationId, animalDto.organizationId) &&
+                Objects.equals(url, animalDto.url) &&
+                Objects.equals(type, animalDto.type) &&
+                Objects.equals(species, animalDto.species) &&
+                Objects.equals(breeds, animalDto.breeds) &&
+                Objects.equals(colors, animalDto.colors) &&
+                Objects.equals(age, animalDto.age) &&
+                Objects.equals(gender, animalDto.gender) &&
+                Objects.equals(size, animalDto.size) &&
+                Objects.equals(coat, animalDto.coat) &&
+                Objects.equals(attributes, animalDto.attributes) &&
+                Objects.equals(environment, animalDto.environment) &&
+                Objects.equals(tags, animalDto.tags) &&
+                Objects.equals(name, animalDto.name) &&
+                Objects.equals(description, animalDto.description) &&
+                Objects.equals(photos, animalDto.photos) &&
+                Objects.equals(status, animalDto.status) &&
+                Objects.equals(statusChangedAt, animalDto.statusChangedAt) &&
+                Objects.equals(publishedAt, animalDto.publishedAt) &&
+                Objects.equals(distance, animalDto.distance) &&
+                Objects.equals(contact, animalDto.contact);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, organizationId, url, type, species, breeds, colors, age, gender, size, coat, attributes, environment, tags, name, description, photos, status, statusChangedAt, publishedAt, distance, contact);
     }
 }

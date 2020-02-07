@@ -3,6 +3,8 @@ package org.czekalski.petapiintegration.apiclient.v1.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class EnvironmentDto {
     private final Boolean children;
 
@@ -30,5 +32,20 @@ public class EnvironmentDto {
 
     public Boolean getCats() {
         return cats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnvironmentDto that = (EnvironmentDto) o;
+        return Objects.equals(children, that.children) &&
+                Objects.equals(dogs, that.dogs) &&
+                Objects.equals(cats, that.cats);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(children, dogs, cats);
     }
 }

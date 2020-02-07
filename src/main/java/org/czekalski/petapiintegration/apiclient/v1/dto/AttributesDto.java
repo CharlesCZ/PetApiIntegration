@@ -4,6 +4,8 @@ package org.czekalski.petapiintegration.apiclient.v1.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class AttributesDto {
     private final boolean spayedNeutered;
 
@@ -49,5 +51,22 @@ public class AttributesDto {
 
     public boolean getShotsCurrent() {
         return shotsCurrent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AttributesDto that = (AttributesDto) o;
+        return spayedNeutered == that.spayedNeutered &&
+                houseTrained == that.houseTrained &&
+                specialNeeds == that.specialNeeds &&
+                shotsCurrent == that.shotsCurrent &&
+                Objects.equals(declawed, that.declawed);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(spayedNeutered, houseTrained, declawed, specialNeeds, shotsCurrent);
     }
 }

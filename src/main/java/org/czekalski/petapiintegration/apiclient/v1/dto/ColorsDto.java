@@ -3,6 +3,8 @@ package org.czekalski.petapiintegration.apiclient.v1.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class ColorsDto {
     private final String primary;
 
@@ -31,5 +33,20 @@ public class ColorsDto {
 
     public String getTertiary() {
         return tertiary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ColorsDto colorsDto = (ColorsDto) o;
+        return Objects.equals(primary, colorsDto.primary) &&
+                Objects.equals(secondary, colorsDto.secondary) &&
+                Objects.equals(tertiary, colorsDto.tertiary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(primary, secondary, tertiary);
     }
 }

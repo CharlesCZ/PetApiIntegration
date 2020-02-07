@@ -4,6 +4,8 @@ package org.czekalski.petapiintegration.apiclient.v1.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class BreedsDto {
     private final String primary;
 
@@ -40,5 +42,21 @@ public class BreedsDto {
 
     public boolean getUnknown() {
         return unknown;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BreedsDto breedsDto = (BreedsDto) o;
+        return mixed == breedsDto.mixed &&
+                unknown == breedsDto.unknown &&
+                Objects.equals(primary, breedsDto.primary) &&
+                Objects.equals(secondary, breedsDto.secondary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(primary, secondary, mixed, unknown);
     }
 }
