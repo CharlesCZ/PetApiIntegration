@@ -52,14 +52,15 @@ class PetApiIntegrationEndToEndTest {
         List<AnimalResourceDto> animalResourceDto=Arrays.asList(
                 new AnimalResourceDto(0,"","","",""),
                 new AnimalResourceDto(0,"","","",""));
-
         Page<AnimalResourceDto> page=new PageImpl<>(animalResourceDto,pageable,TOTAL_COUNT);
         AnimalResourcesListDto animalResourcesListDto = new AnimalResourcesListDto(page);
 
 
 
         //when then
-        given(animalService.findDogsByCityIdAndDogsQuantity(anyString(), anyString(), anyInt(), anyInt())).willReturn(animalResourcesListDto);
+        given(animalService.findDogsByCityIdAndDogsQuantity(anyString(), anyString(), anyInt(), anyInt()))
+                .willReturn(animalResourcesListDto);
+
         mockMvc.perform(get("/dogs" + "/" + STATE_ID+"/"+ CITY_ID)
                 .param("size", "2")
                 .param("page", "1")
