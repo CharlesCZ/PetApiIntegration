@@ -58,7 +58,7 @@ class PetApiIntegrationEndToEndTest {
 
 
         //when then
-        given(animalService.findDogsByCityIdAndDogsQuantity(anyString(), anyString(), anyInt(), anyInt()))
+        given(animalService.findDogsByCityIdAndStateId(anyString(), anyString(), anyInt(), anyInt()))
                 .willReturn(animalResourcesListDto);
 
         mockMvc.perform(get("/dogs" + "/" + STATE_ID+"/"+ CITY_ID)

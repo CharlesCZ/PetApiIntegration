@@ -21,7 +21,7 @@ public class AnimalController {
             @PathVariable String cityId,
             @RequestParam int size,
             @RequestParam("page") int page) {
-        return animalService.findDogsByCityIdAndDogsQuantity(stateId, cityId, size, page);
+        return animalService.findDogsByCityIdAndStateId(stateId, cityId, size, page);
     }
 
 }

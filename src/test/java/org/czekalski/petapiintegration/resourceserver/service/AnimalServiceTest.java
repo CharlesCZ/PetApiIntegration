@@ -68,7 +68,7 @@ class AnimalServiceTest {
                 .willReturn(new AnimalsListDto(Arrays.asList(animalDto, animalDto2), paginationDto));
 
         //when
-        AnimalResourcesListDto animalResourcesListDto = animalService.findDogsByCityIdAndDogsQuantity(STATE_ID,CITY_ID,SIZE,CURRENT_PAGE);
+        AnimalResourcesListDto animalResourcesListDto = animalService.findDogsByCityIdAndStateId(STATE_ID,CITY_ID,SIZE,CURRENT_PAGE);
 
         //then
         then(oAuth2RestTemplate).should().getForObject(URL + "&location=" + CITY_ID + ", " + STATE_ID + "&limit=" + SIZE+"&page="+CURRENT_PAGE, AnimalsListDto.class);

@@ -38,7 +38,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public AnimalResourcesListDto findDogsByCityIdAndDogsQuantity(String stateId, String cityId, int size, int page) {
+    public AnimalResourcesListDto findDogsByCityIdAndStateId(String stateId, String cityId, int size, int page) {
         UriComponents uriComponents= UriComponentsBuilder.fromUriString(url)
                 .queryParam("location",cityId+", "+stateId)
                 .queryParam("limit",size)

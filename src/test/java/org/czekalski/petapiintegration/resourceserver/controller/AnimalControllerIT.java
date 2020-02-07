@@ -52,7 +52,7 @@ class AnimalControllerIT {
         AnimalResourcesListDto animalResourcesListDto = new AnimalResourcesListDto(
                 Collections.singletonList(new AnimalResourceDto(ID, NAME, BREED, AGE, GENDER)), new PaginationResourceDto(COUNT_PER_PAGE, TOTAL_COUNT, CURRENT_PAGE, TOTAL_PAGES));
 
-        given(animalService.findDogsByCityIdAndDogsQuantity(anyString(), anyString(), anyInt())).willReturn(animalResourcesListDto);
+        given(animalService.findDogsByCityIdAndStateId(anyString(), anyString(), anyInt())).willReturn(animalResourcesListDto);
 
         //when then
         mockMvc.perform(get("/dogs" + "/" + CITY_ID + "/" + STATE_ID)
@@ -65,6 +65,6 @@ class AnimalControllerIT {
                 .andDo(print());
 
 
-        then(animalService).should().findDogsByCityIdAndDogsQuantity(anyString(), anyString(), anyInt());
+        then(animalService).should().findDogsByCityIdAndStateId(anyString(), anyString(), anyInt());
     }
 }*/
