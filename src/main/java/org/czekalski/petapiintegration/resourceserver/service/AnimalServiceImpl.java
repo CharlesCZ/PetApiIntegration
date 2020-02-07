@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.*;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +24,7 @@ public class AnimalServiceImpl implements AnimalService {
     private final Mapper<Animal, AnimalResourceDto> animalToAnimalResourceDtoMapper;
     private final OAuth2RestTemplate oAuth2RestTemplate;
     private final String url;
-    private final Logger logger;
+    private static final Logger ANIMAL_SERVICE_IMPL_LOGGER = LoggerFactory.getLogger(AnimalServiceImpl.class);
 
     public AnimalServiceImpl(
             Mapper animalDtoToAnimalMapper,
@@ -33,13 +35,17 @@ public class AnimalServiceImpl implements AnimalService {
         this.animalToAnimalResourceDtoMapper = animalToAnimalResourceDtoMapper;
         this.oAuth2RestTemplate = oAuth2RestTemplate;
         this.url = url;
-        logger = LoggerFactory.getLogger(AnimalServiceImpl.class);
     }
 
     @Override
     public AnimalResourcesListDto findDogsByCityIdAndDogsQuantity(String stateId, String cityId, int size, int page) {
-        logger.trace("URL=" +url + "&location=" + cityId + ", " + stateId + "&limit=" + size+"&page="+page);
-        AnimalsListDto animalsListDto = oAuth2RestTemplate.getForObject(url + "&location=" + cityId + ", " + stateId + "&limit=" + size+"&page="+page, AnimalsListDto.class);
+        UriComponents uriComponents= UriComponentsBuilder.fromUriString(url)
+                .queryParam("location",cityId+", "+stateId)
+                .queryParam("limit",size)
+                .queryParam("page",page)
+                .build();
+        ANIMAL_SERVICE_IMPL_LOGGER.trace("URL=" + uriComponents.toUriString());
+        AnimalsListDto animalsListDto = oAuth2RestTemplate.getForObject(uriComponents.toUriString(), AnimalsListDto.class);
 
         List<AnimalResourceDto> animalResourceDto = animalsListDto.getAnimals()
                 .stream()
