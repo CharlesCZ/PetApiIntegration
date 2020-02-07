@@ -4,17 +4,15 @@ package org.czekalski.petapiintegration;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourceDto;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourcesListDto;
 import org.czekalski.petapiintegration.resourceserver.service.AnimalService;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.*;
-import org.springframework.http.MediaType;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,14 +59,15 @@ class PetApiIntegrationEndToEndTest {
         given(animalService.findDogsByCityIdAndStateId(anyString(), anyString(), anyInt(), anyInt()))
                 .willReturn(animalResourcesListDto);
 
-        mockMvc.perform(get("/dogs" + "/" + STATE_ID+"/"+ CITY_ID)
+        mockMvc.perform(get("/dogs" + "/" + STATE_ID + "/" + CITY_ID).accept(MediaTypes.HAL_JSON_VALUE)
                 .param("size", "2")
                 .param("page", "1")
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaTypes.HAL_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.pagination.content", hasSize(2)))
                 .andExpect(jsonPath("$.pagination.size", is(COUNT_PER_PAGE)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.pagination.number", is(PAGE_NUMBER)))
+                .andExpect(jsonPath("$._links.self.href", is("http://localhost/dogs/MA/Andover?size=2&page=1")))
                 .andDo(print());
     }
 
