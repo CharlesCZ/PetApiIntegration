@@ -1,4 +1,4 @@
-package org.czekalski.petapiintegration;
+package org.czekalski.petapiintegration.resourceserver.controller;
 
 
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourceDto;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
-class PetApiIntegrationEndToEndTest {
+class AnimalControllerIT {
     private static final int COUNT_PER_PAGE = 2;
     private static final String CITY_ID = "Andover";
     private static final String STATE_ID = "MA";

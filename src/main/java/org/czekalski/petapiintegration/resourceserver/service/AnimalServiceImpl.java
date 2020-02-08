@@ -9,7 +9,10 @@ import org.czekalski.petapiintegration.resourceserver.model.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponents;
@@ -24,7 +27,7 @@ public class AnimalServiceImpl implements AnimalService {
     private final Mapper<Animal, AnimalResourceDto> animalToAnimalResourceDtoMapper;
     private final OAuth2RestTemplate oAuth2RestTemplate;
     private final String url;
-    private static final Logger ANIMAL_SERVICE_IMPL_LOGGER = LoggerFactory.getLogger(AnimalServiceImpl.class);
+    private static final Logger animalServiceImplLogger = LoggerFactory.getLogger(AnimalServiceImpl.class);
 
     public AnimalServiceImpl(
             Mapper animalDtoToAnimalMapper,
@@ -44,7 +47,7 @@ public class AnimalServiceImpl implements AnimalService {
                 .queryParam("limit",size)
                 .queryParam("page",page)
                 .build();
-        ANIMAL_SERVICE_IMPL_LOGGER.trace("URL=" + uriComponents.toUriString());
+        animalServiceImplLogger.trace("URL=" + uriComponents.toUriString());
         AnimalsListDto animalsListDto = oAuth2RestTemplate.getForObject(uriComponents.toUriString(), AnimalsListDto.class);
 
         List<AnimalResourceDto> animalResourceDto = animalsListDto.getAnimals()

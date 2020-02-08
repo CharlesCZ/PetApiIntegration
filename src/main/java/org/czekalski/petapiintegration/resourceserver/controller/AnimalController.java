@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AnimalController {
     private final AnimalService animalService;
-    private static final AnimalRepresentationModelAssembler ANIMAL_REPRESENTATION_MODEL_ASSEMBLER = new AnimalRepresentationModelAssembler();
+    private static final AnimalRepresentationModelAssembler animalRepresentationModelAssembler = new AnimalRepresentationModelAssembler();
 
     public AnimalController(AnimalService animalService) {
         this.animalService = animalService;
@@ -26,7 +26,7 @@ public class AnimalController {
             @RequestParam int size,
             @RequestParam("page") int page) {
 
-        return ANIMAL_REPRESENTATION_MODEL_ASSEMBLER
+        return animalRepresentationModelAssembler
                 .toModel(animalService
                         .findDogsByCityIdAndStateId(stateId, cityId, size, page), stateId, cityId, size, page);
     }
