@@ -5,6 +5,7 @@ import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalR
 import org.czekalski.petapiintegration.resourceserver.model.Animal;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AnimalToAnimalResourceDtoMapperTest {
@@ -16,7 +17,7 @@ class AnimalToAnimalResourceDtoMapperTest {
     private final Mapper<Animal, AnimalResourceDto> animalToAnimalResourceDto = new AnimalToAnimalResourceDtoMapper();
 
     @Test
-    void map() {
+    void animalToAnimalResourceDto() {
         //given
         Animal animal = new Animal(ID, NAME, BREED, AGE, GENDER);
 
@@ -29,5 +30,17 @@ class AnimalToAnimalResourceDtoMapperTest {
         assertEquals(BREED, animalResourceDto.getBreed());
         assertEquals(AGE, animalResourceDto.getAge());
         assertEquals(GENDER, animalResourceDto.getGender());
+    }
+
+    @Test
+    void nullToAnimalResourceDto() {
+        //given
+        Animal animal = null;
+
+        //when
+        AnimalResourceDto animalResourceDto = animalToAnimalResourceDto.map(animal);
+
+        //then
+        assertThat(animalResourceDto).isNull();
     }
 }
