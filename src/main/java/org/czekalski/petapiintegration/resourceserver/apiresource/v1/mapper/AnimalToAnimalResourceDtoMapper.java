@@ -12,7 +12,12 @@ public class AnimalToAnimalResourceDtoMapper implements Mapper<Animal, AnimalRes
         if (animal == null) {
             return null;
         } else {
-            return new AnimalResourceDto(animal.getId(), animal.getName(), animal.getBreed(), animal.getAge(), animal.getGender());
+            return new AnimalResourceDto(
+                    animal.getId(),
+                    animal.getName(),
+                    animal.getBreed(),
+                    animal.getAge(),
+                    animal.getGender());
         }
     }
 }

@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
-class AnimalControllerIT {
+class AnimalControllerIntegrationTest {
     private static final int COUNT_PER_PAGE = 2;
     private static final String CITY_ID = "Andover";
     private static final String STATE_ID = "MA";
@@ -46,20 +46,21 @@ class AnimalControllerIT {
     @Test
     void getDogsFromCity() throws Exception {
         //given
-        Pageable pageable=PageRequest.of(PAGE_NUMBER, COUNT_PER_PAGE, Sort.Direction.ASC,"publishedAt");
-        List<AnimalResourceDto> animalResourceDto=Arrays.asList(
-                new AnimalResourceDto(0,"","","",""),
-                new AnimalResourceDto(0,"","","",""));
-        Page<AnimalResourceDto> page=new PageImpl<>(animalResourceDto,pageable,TOTAL_COUNT);
+        Pageable pageable = PageRequest.of(
+                PAGE_NUMBER, COUNT_PER_PAGE, Sort.Direction.ASC, "publishedAt");
+        List<AnimalResourceDto> animalResourceDto = Arrays.asList(
+                new AnimalResourceDto(0, "", "", "", ""),
+                new AnimalResourceDto(0, "", "", "", ""));
+        Page<AnimalResourceDto> page = new PageImpl<>(animalResourceDto, pageable, TOTAL_COUNT);
         AnimalResourcesListDto animalResourcesListDto = new AnimalResourcesListDto(page);
 
-
-
-        //when then
         given(animalService.findDogsByCityIdAndStateId(anyString(), anyString(), anyInt(), anyInt()))
                 .willReturn(animalResourcesListDto);
 
-        mockMvc.perform(get("/dogs" + "/" + STATE_ID + "/" + CITY_ID).accept(MediaTypes.HAL_JSON_VALUE)
+        //then
+        mockMvc.perform(
+                get("/dogs" + "/" + STATE_ID + "/" + CITY_ID)
+                        .accept(MediaTypes.HAL_JSON_VALUE)
                 .param("size", "2")
                 .param("page", "1")
                 .contentType(MediaTypes.HAL_JSON_VALUE))
