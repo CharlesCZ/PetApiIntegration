@@ -1,6 +1,7 @@
 package org.czekalski.petapiintegration.resourceserver.controller;
 
 
+import org.czekalski.petapiintegration.config.AnimalPageCaseFactory;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourceDto;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourcesListDto;
 import org.czekalski.petapiintegration.resourceserver.service.AnimalService;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.*;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -27,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Import(AnimalPageCaseFactory.class)
 @WebMvcTest
 class AnimalControllerIntegrationTest {
     private static final int COUNT_PER_PAGE = 2;
@@ -40,7 +43,6 @@ class AnimalControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
-
 
     @WithMockUser(username = "doglover", password = "hardpassword1234", roles = "ADMIN")
     @Test
@@ -61,9 +63,9 @@ class AnimalControllerIntegrationTest {
         mockMvc.perform(
                 get("/dogs" + "/" + STATE_ID + "/" + CITY_ID)
                         .accept(MediaTypes.HAL_JSON_VALUE)
-                .param("size", "2")
-                .param("page", "1")
-                .contentType(MediaTypes.HAL_JSON_VALUE))
+                        .param("size", "2")
+                        .param("page", "1")
+                        .contentType(MediaTypes.HAL_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.pagination.content", hasSize(2)))
                 .andExpect(jsonPath("$.pagination.size", is(COUNT_PER_PAGE)))
