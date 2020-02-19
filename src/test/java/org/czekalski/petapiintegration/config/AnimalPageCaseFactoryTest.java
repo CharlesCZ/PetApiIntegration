@@ -9,8 +9,10 @@ import org.springframework.data.domain.*;
 import org.springframework.hateoas.EntityModel;
 
 import java.util.Collections;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 
@@ -116,5 +118,9 @@ class AnimalPageCaseFactoryTest {
                         CITY_ID);
         assertThat(animalResourcesListDtoEntityModel.getLink("prev").get().getHref())
                 .isEqualTo("/dogs/MA/Andover?size=1&page=128");
+
+        assertThrows(
+                NoSuchElementException.class,
+                animalResourcesListDtoEntityModel.getLink("self")::get);
     }
 }
