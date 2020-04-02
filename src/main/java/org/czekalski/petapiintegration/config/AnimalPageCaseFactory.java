@@ -17,7 +17,6 @@ public class AnimalPageCaseFactory {
                 AnimalResourcesListDto animalResourcesListDto,
                 String stateId,
                 String cityId,
-                int size,
                 int page);
     }
 
@@ -27,8 +26,9 @@ public class AnimalPageCaseFactory {
                 AnimalResourcesListDto animalResourcesListDto,
                 String stateId,
                 String cityId,
-                int size,
                 int page) {
+            int size= animalResourcesListDto.getPagination().getSize();
+
             return new EntityModel<>(animalResourcesListDto,
                     WebMvcLinkBuilder.linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page - 1)).withRel("prev"),
                     linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page)).withSelfRel());
@@ -41,8 +41,9 @@ public class AnimalPageCaseFactory {
                 AnimalResourcesListDto animalResourcesListDto,
                 String stateId,
                 String cityId,
-                int size,
                 int page) {
+            int size= animalResourcesListDto.getPagination().getSize();
+
             return new EntityModel<>(animalResourcesListDto,
                     linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page - 1)).withRel("prev"),
                     linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page)).withSelfRel(),
@@ -56,8 +57,9 @@ public class AnimalPageCaseFactory {
                 AnimalResourcesListDto animalResourcesListDto,
                 String stateId,
                 String cityId,
-                int size,
                 int page) {
+            int size= animalResourcesListDto.getPagination().getSize();
+
             return new EntityModel<>(animalResourcesListDto,
                     linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page)).withRel("prev"),
                     linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page)).withSelfRel(),
@@ -72,8 +74,9 @@ public class AnimalPageCaseFactory {
                 AnimalResourcesListDto animalResourcesListDto,
                 String stateId,
                 String cityId,
-                int size,
                 int page) {
+            int size= animalResourcesListDto.getPagination().getSize();
+
             return new EntityModel<>(animalResourcesListDto,
                     WebMvcLinkBuilder.linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, animalResourcesListDto.getPagination().getTotalPages())).withRel("prev"));
         }
@@ -87,8 +90,9 @@ public class AnimalPageCaseFactory {
                 AnimalResourcesListDto animalResourcesListDto,
                 String stateId,
                 String cityId,
-                int size,
                 int page) {
+            int size= animalResourcesListDto.getPagination().getSize();
+
             return new EntityModel<>(animalResourcesListDto,
                     linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, page)).withSelfRel());
         }
@@ -102,15 +106,15 @@ public class AnimalPageCaseFactory {
         int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
         int totalPages = animalResourcesListDto.getPagination().getTotalPages();
         if (currentPage > 1 && currentPage == totalPages) {
-            return new LastPage().calculateCase(animalResourcesListDto, stateId, cityId, animalResourcesListDto.getPagination().getSize(), currentPage);
+            return new LastPage().calculateCase(animalResourcesListDto, stateId, cityId, currentPage);
         } else if (currentPage > 1 && currentPage > totalPages) {
-            return new AfterAllPages().calculateCase(animalResourcesListDto, stateId, cityId, animalResourcesListDto.getPagination().getSize(), currentPage);
+            return new AfterAllPages().calculateCase(animalResourcesListDto, stateId, cityId, currentPage);
         } else if (currentPage > 1 && currentPage < totalPages) {
-            return new MiddlePage().calculateCase(animalResourcesListDto, stateId, cityId, animalResourcesListDto.getPagination().getSize(), currentPage);
+            return new MiddlePage().calculateCase(animalResourcesListDto, stateId, cityId, currentPage);
         } else if (currentPage == 1 && totalPages > 1) { //always exists at least 2 pages inside PageImpl
-            return new FirstPage().calculateCase(animalResourcesListDto, stateId, cityId, animalResourcesListDto.getPagination().getSize(), currentPage);
+            return new FirstPage().calculateCase(animalResourcesListDto, stateId, cityId, currentPage);
         } else {
-            return new UnspecifiedPage().calculateCase(animalResourcesListDto, stateId, cityId, animalResourcesListDto.getPagination().getSize(), currentPage);
+            return new UnspecifiedPage().calculateCase(animalResourcesListDto, stateId, cityId, currentPage);
         }
     }
 }
