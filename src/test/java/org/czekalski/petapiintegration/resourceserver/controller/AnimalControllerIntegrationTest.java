@@ -1,7 +1,7 @@
 package org.czekalski.petapiintegration.resourceserver.controller;
 
 
-import org.czekalski.petapiintegration.config.AnimalPageCaseFactory;
+import org.czekalski.petapiintegration.config.AnimalFactory.AnimalPageCaseFactory;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourceDto;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourcesListDto;
 import org.czekalski.petapiintegration.resourceserver.service.AnimalService;

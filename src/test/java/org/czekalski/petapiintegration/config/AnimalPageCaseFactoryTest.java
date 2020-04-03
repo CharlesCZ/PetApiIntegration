@@ -2,6 +2,7 @@ package org.czekalski.petapiintegration.config;
 
 import org.czekalski.petapiintegration.apiclient.v1.dto.AnimalsListDto;
 import org.czekalski.petapiintegration.apiclient.v1.dto.PaginationDto;
+import org.czekalski.petapiintegration.config.AnimalFactory.AnimalPageCaseFactory;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourceDto;
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourcesListDto;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,6 @@ import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 
 class AnimalPageCaseFactoryTest {
 
