@@ -23,7 +23,6 @@ final class AfterAllPages implements PaginationCase {
         int size = animalResourcesListDto.getPagination().getSize();
 
         return new EntityModel<>(animalResourcesListDto,
-              //ghfdgdf
                 linkTo(
                         methodOn(AnimalController.class)
                                 .getDogsFromCity(stateId, cityId, size, animalResourcesListDto.getPagination().getTotalPages()))
