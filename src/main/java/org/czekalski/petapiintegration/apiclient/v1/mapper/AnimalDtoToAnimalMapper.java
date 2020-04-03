@@ -12,12 +12,14 @@ public class AnimalDtoToAnimalMapper implements Mapper<AnimalDto, Animal> {
         if (animalDto == null) {
             return null;
         } else {
-           return new Animal(
-                    animalDto.getId(),
-                    animalDto.getName(),
-                    this.breedDtoToBreed(animalDto.getBreeds()),
-                    animalDto.getAge(),
-                    animalDto.getGender());
+            return new Animal.AnimalBuilder()
+                    .setId(animalDto.getId())
+                    .setName(animalDto.getName())
+                    .setBreed(
+                            this.breedDtoToBreed(animalDto.getBreeds())
+                    )
+                    .setAge(animalDto.getAge())
+                    .setGender(animalDto.getGender()).build();
         }
     }
 

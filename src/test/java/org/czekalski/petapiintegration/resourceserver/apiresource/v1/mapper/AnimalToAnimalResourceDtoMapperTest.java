@@ -19,7 +19,12 @@ class AnimalToAnimalResourceDtoMapperTest {
     @Test
     void animalToAnimalResourceDto() {
         //given
-        Animal animal = new Animal(ID, NAME, BREED, AGE, GENDER);
+        Animal animal = new Animal.AnimalBuilder()
+                .setId(ID)
+                .setName(NAME)
+                .setBreed(BREED)
+                .setAge(AGE)
+                .setGender(GENDER).build();
 
         //when
         AnimalResourceDto animalResourceDto = animalToAnimalResourceDto.map(animal);
