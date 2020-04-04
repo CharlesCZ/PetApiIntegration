@@ -1,4 +1,4 @@
-package org.czekalski.petapiintegration.config.AnimalFactory;
+package org.czekalski.petapiintegration.config.animalfactory;
 
 import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourcesListDto;
 import org.czekalski.petapiintegration.resourceserver.controller.AnimalController;
