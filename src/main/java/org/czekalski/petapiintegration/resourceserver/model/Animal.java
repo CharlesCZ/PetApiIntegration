@@ -36,7 +36,7 @@ public class Animal {
         return gender;
     }
 
-    public static class AnimalBuilder {
+    public static class Builder {
         private Integer id;
         private String name;
         private String breed;
