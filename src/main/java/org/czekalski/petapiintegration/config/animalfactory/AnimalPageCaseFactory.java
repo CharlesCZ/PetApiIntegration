@@ -9,10 +9,9 @@ import java.util.NoSuchElementException;
 @Component
 public class AnimalPageCaseFactory {
 
-
     private PaginationCase paginationFactory(AnimalResourcesListDto animalResourcesListDto, String stateId, String cityId) {
-        int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
-        int totalPages = animalResourcesListDto.getPagination().getTotalPages();
+       final int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
+       final int totalPages = animalResourcesListDto.getPagination().getTotalPages();
         if (currentPage > 1 && currentPage == totalPages) {
             return new LastPage(animalResourcesListDto, stateId, cityId);
         } else if (currentPage > 1 && currentPage > totalPages) {
@@ -21,11 +20,10 @@ public class AnimalPageCaseFactory {
             return new MiddlePage(animalResourcesListDto, stateId, cityId);
         } else if (currentPage == 1 && totalPages > 1) { //always exists at least 2 pages inside PageImpl
             return new FirstPage(animalResourcesListDto, stateId, cityId);
-        } else
-            throw new NoSuchElementException();
+        }
 
+        throw new NoSuchElementException();
     }
-
 
     public EntityModel<AnimalResourcesListDto> toModel(
             AnimalResourcesListDto animalResourcesListDto,
@@ -33,7 +31,6 @@ public class AnimalPageCaseFactory {
             String cityId) {
 
         return paginationFactory(animalResourcesListDto, stateId, cityId).calculateCase();
-
     }
 }
 

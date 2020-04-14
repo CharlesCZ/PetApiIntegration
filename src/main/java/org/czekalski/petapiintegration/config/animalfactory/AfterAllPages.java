@@ -20,7 +20,8 @@ final class AfterAllPages implements PaginationCase {
 
     @Override
     public EntityModel<AnimalResourcesListDto> calculateCase() {
-        int size = animalResourcesListDto.getPagination().getSize();
+       final int size = animalResourcesListDto.getPagination().getSize();
+       final int totalPages = animalResourcesListDto.getPagination().getTotalPages();
 
         return new EntityModel<>(animalResourcesListDto,
                 linkTo(

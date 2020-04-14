@@ -20,12 +20,15 @@ final class FirstPage implements PaginationCase {
 
     @Override
     public EntityModel<AnimalResourcesListDto> calculateCase() {
-        int size = animalResourcesListDto.getPagination().getSize();
-        int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
+       final int size = animalResourcesListDto.getPagination().getSize();
+       final int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
 
         return new EntityModel<>(animalResourcesListDto,
-                linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, currentPage)).withRel("prev"),
-                linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, currentPage)).withSelfRel(),
-                linkTo(methodOn(AnimalController.class).getDogsFromCity(stateId, cityId, size, currentPage + 1)).withRel("next"));
+                linkTo(methodOn(AnimalController.class)
+                        .getDogsFromCity(stateId, cityId, size, currentPage)).withRel("prev"),
+                linkTo(methodOn(AnimalController.class)
+                        .getDogsFromCity(stateId, cityId, size, currentPage)).withSelfRel(),
+                linkTo(methodOn(AnimalController.class)
+                        .getDogsFromCity(stateId, cityId, size, currentPage + 1)).withRel("next"));
     }
 }

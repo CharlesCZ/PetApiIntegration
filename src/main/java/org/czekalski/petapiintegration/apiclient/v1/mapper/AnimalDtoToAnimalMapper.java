@@ -5,6 +5,8 @@ import org.czekalski.petapiintegration.apiclient.v1.dto.BreedsDto;
 import org.czekalski.petapiintegration.resourceserver.model.Animal;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class AnimalDtoToAnimalMapper implements Mapper<AnimalDto, Animal> {
     @Override
