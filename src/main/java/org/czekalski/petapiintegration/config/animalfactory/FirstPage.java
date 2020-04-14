@@ -20,8 +20,8 @@ final class FirstPage implements PaginationCase {
 
     @Override
     public EntityModel<AnimalResourcesListDto> calculateCase() {
-       final int size = animalResourcesListDto.getPagination().getSize();
-       final int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
+        final int size = animalResourcesListDto.getPagination().getSize();
+        final int currentPage = animalResourcesListDto.getPagination().getPageable().getPageNumber();
 
         return new EntityModel<>(animalResourcesListDto,
                 linkTo(methodOn(AnimalController.class)
