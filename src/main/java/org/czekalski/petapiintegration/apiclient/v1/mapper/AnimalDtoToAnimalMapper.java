@@ -16,7 +16,9 @@ public class AnimalDtoToAnimalMapper implements Mapper<AnimalDto, Animal> {
                     .setId(animalDto.getId())
                     .setName(animalDto.getName())
                     .setBreed(
-                            this.breedDtoToBreed(animalDto.getBreeds())
+                            Optional.ofNullable(animalDto.getBreeds())
+                                    .map(BreedsDto::getPrimary)
+                                    .orElse(null)
                     )
                     .setAge(animalDto.getAge())
                     .setGender(animalDto.getGender()).build();
