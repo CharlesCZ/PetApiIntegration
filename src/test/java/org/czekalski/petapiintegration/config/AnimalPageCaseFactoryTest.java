@@ -1,10 +1,10 @@
 package org.czekalski.petapiintegration.config;
 
-import org.czekalski.petapiintegration.apiclient.v1.dto.AnimalsListDto;
-import org.czekalski.petapiintegration.apiclient.v1.dto.PaginationDto;
-import org.czekalski.petapiintegration.config.animalfactory.AnimalPageCaseFactory;
-import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourceDto;
-import org.czekalski.petapiintegration.resourceserver.apiresource.v1.dto.AnimalResourcesListDto;
+import org.czekalski.petapiintegration.client.api.v1.dto.AnimalsListDto;
+import org.czekalski.petapiintegration.client.api.v1.dto.PaginationDto;
+import org.czekalski.petapiintegration.infrastructure.factory.animal.AnimalPageCaseFactory;
+import org.czekalski.petapiintegration.server.api.resource.v1.dto.AnimalResourceDto;
+import org.czekalski.petapiintegration.server.api.resource.v1.dto.AnimalResourcesListDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.*;
 import org.springframework.hateoas.EntityModel;
@@ -24,6 +24,7 @@ class AnimalPageCaseFactoryTest {
 
     @Test
     void AddLinksToFirstPage() {
+        //given
         PaginationDto paginationDto = new PaginationDto(1, 128, 1, 128);
         AnimalsListDto animalsListDto = new AnimalsListDto(Collections.emptyList(), paginationDto);
         Pageable pageable = PageRequest.of(
@@ -43,11 +44,14 @@ class AnimalPageCaseFactoryTest {
                         pageable,
                         128));
 
+        //when
         EntityModel<AnimalResourcesListDto> animalResourcesListDtoEntityModel = animalPageCaseFactory
                 .toModel(
                         animalResourcesListDto,
                         STATE_ID,
                         CITY_ID);
+
+        //then
         assertThat(animalResourcesListDtoEntityModel.getLink("prev").get().getHref())
                 .isEqualTo("/dogs/MA/Andover?size=1&page=1");
         assertThat(animalResourcesListDtoEntityModel.getLink("self").get().getHref())
@@ -59,6 +63,7 @@ class AnimalPageCaseFactoryTest {
 
     @Test
     void AddLinksToMiddlePage() {
+        //given
         PaginationDto paginationDto = new PaginationDto(1, 128, 3, 128);
         AnimalsListDto animalsListDto = new AnimalsListDto(Collections.emptyList(), paginationDto);
         Pageable pageable = PageRequest.of(
@@ -78,11 +83,14 @@ class AnimalPageCaseFactoryTest {
                         pageable,
                         128));
 
+        //when
         EntityModel<AnimalResourcesListDto> animalResourcesListDtoEntityModel = animalPageCaseFactory
                 .toModel(
                         animalResourcesListDto,
                         STATE_ID,
                         CITY_ID);
+
+        //when
         assertThat(animalResourcesListDtoEntityModel.getLink("prev").get().getHref())
                 .isEqualTo("/dogs/MA/Andover?size=1&page=2");
         assertThat(animalResourcesListDtoEntityModel.getLink("self").get().getHref())
@@ -93,6 +101,7 @@ class AnimalPageCaseFactoryTest {
 
     @Test
     void AddLinksToLastPage() {
+        //given
         PaginationDto paginationDto = new PaginationDto(1, 128, 128, 128);
         AnimalsListDto animalsListDto = new AnimalsListDto(Collections.emptyList(), paginationDto);
         Pageable pageable = PageRequest.of(
@@ -107,12 +116,15 @@ class AnimalPageCaseFactoryTest {
                 128);
         AnimalResourcesListDto animalResourcesListDto = new AnimalResourcesListDto(page);
         System.out.println(page.getTotalPages());
+
+        //when
         EntityModel<AnimalResourcesListDto> animalResourcesListDtoEntityModel = animalPageCaseFactory
                 .toModel(
                         animalResourcesListDto,
                         STATE_ID,
                         CITY_ID);
 
+        //then
         assertThat(animalResourcesListDtoEntityModel.getLink("prev").get().getHref())
                 .isEqualTo("/dogs/MA/Andover?size=1&page=127");
         assertThat(animalResourcesListDtoEntityModel.getLink("self").get().getHref())
@@ -121,6 +133,7 @@ class AnimalPageCaseFactoryTest {
 
     @Test
     void AddLinksAfterAllPages() {
+        //given
         PaginationDto paginationDto = new PaginationDto(1, 128, 129, 128);
         AnimalsListDto animalsListDto = new AnimalsListDto(Collections.emptyList(), paginationDto);
         Pageable pageable = PageRequest.of(
@@ -134,14 +147,16 @@ class AnimalPageCaseFactoryTest {
                         pageable,
                         128));
 
+        //when
         EntityModel<AnimalResourcesListDto> animalResourcesListDtoEntityModel = animalPageCaseFactory
                 .toModel(
                         animalResourcesListDto,
                         STATE_ID,
                         CITY_ID);
+
+        //then
         assertThat(animalResourcesListDtoEntityModel.getLink("prev").get().getHref())
                 .isEqualTo("/dogs/MA/Andover?size=1&page=128");
-
         assertThrows(
                 NoSuchElementException.class,
                 animalResourcesListDtoEntityModel.getLink("self")::get);
