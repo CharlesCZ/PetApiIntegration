@@ -1,4 +1,4 @@
-package org.czekalski.petapiintegration.config;
+package org.czekalski.petapiintegration.infrastructure.factory.animal;
 
 import org.czekalski.petapiintegration.client.api.v1.dto.AnimalsListDto;
 import org.czekalski.petapiintegration.client.api.v1.dto.PaginationDto;
