@@ -32,8 +32,8 @@ build/
 
 ######Java############
 
-#sensitive data
-application.yml
+#build
+target/
 
 # Compiled class file
 *.class
