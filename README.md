@@ -8,7 +8,7 @@
 
 Using Spring MVC integrate with Petfinder API. Provide application that will authenticate itself and download information about adoptable dogs in given city.
 
-Here is an example of fetching first 20 dogs from Jersey City.
+Here is an example of fetching 2 dogs from Andover.
 
 ```
 GET /dogs/MA/Andover?size=2&page=3
