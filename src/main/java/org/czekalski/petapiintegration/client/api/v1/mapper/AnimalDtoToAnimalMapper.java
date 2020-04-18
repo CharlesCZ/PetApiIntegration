@@ -6,24 +6,23 @@ import org.czekalski.petapiintegration.server.model.Animal;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @Component
 public class AnimalDtoToAnimalMapper implements Mapper<AnimalDto, Animal> {
     @Override
     public Animal map(AnimalDto animalDto) {
-        if (animalDto == null) {
-            return null;
-        } else {
-            return new Animal.Builder()
-                    .withId(animalDto.getId())
-                    .withName(animalDto.getName())
+        return Optional.ofNullable(animalDto)
+                .map(aDto -> new Animal.Builder()
+                        .withId(aDto.getId())
+                        .withName(aDto.getName())
                     .withBreed(
-                            Optional.ofNullable(animalDto.getBreeds())
+                            Optional.ofNullable(aDto.getBreeds())
                                     .map(BreedsDto::getPrimary)
                                     .orElse(null)
                     )
-                    .withAge(animalDto.getAge())
-                    .withGender(animalDto.getGender()).build();
-        }
+                        .withAge(aDto.getAge())
+                        .withGender(aDto.getGender()).build())
+                .orElse(null);
     }
 }
