@@ -1,12 +1,8 @@
-
-
 logging:
+  group:
+    AnimalServiceImpl: org.czekalski.petapiintegration.resourceserver.service.AnimalServiceImpl
   level:
-    root: WARN
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
-
+    AnimalServiceImpl: trace
 
 security:
   oauth2:
@@ -20,5 +16,5 @@ security:
 
 
 messages:
-  base-uri: https://api.petfinder.com/v2/animals?location=Andover, MA&distance=2
+  base-uri: https://api.petfinder.com/v2/animals?type=dog
 
