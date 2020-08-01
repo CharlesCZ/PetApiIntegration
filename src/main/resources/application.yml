@@ -1,6 +1,6 @@
 logging:
   group:
-    AnimalServiceImpl: org.czekalski.petapiintegration.resourceserver.service.AnimalServiceImpl
+    AnimalServiceImpl: org.czekalski.petapiintegration.server.service.AnimalServiceImpl
   level:
     AnimalServiceImpl: trace
 
